@@ -68,8 +68,8 @@ export function Footer() {
           <div className="flex flex-col ml-auto mr-6 items-center gap-4 pt-2">
             {[
               { label: "Telegram", href: "https://t.me/CSEC_ASTU", icon: Send },
-              { label: "LinkedIn", href: "#", icon: Linkedin },
-              { label: "YouTube", href: "#", icon: Youtube },
+              { label: "LinkedIn", href: "https://www.linkedin.com/company/csec-astu/posts/?feedView=all", icon: Linkedin },
+              { label: "YouTube", href: "https://www.youtube.com/@csec_cbd", icon: Youtube },
             ].map((social) => {
               const Icon = social.icon
               return (
@@ -94,7 +94,6 @@ export function Footer() {
         <div className="pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-muted-foreground uppercase tracking-widest">
           <p>© 2026 CSEC ASTU. All rights reserved.</p>
           <p className="flex items-center gap-2 text-foreground/60">
-            <Globe className="w-3 h-3 text-accent" />
             <span>Adama Science & Technology University</span>
           </p>
         </div>
