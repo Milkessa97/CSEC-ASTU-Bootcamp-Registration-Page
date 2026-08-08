@@ -4,7 +4,8 @@ import { useRef, useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { bootcampConfig } from "@/lib/bootcamp-config"
+import { bootcampConfig as staticConfig } from "@/lib/bootcamp-config"
+import { useConfig } from "@/lib/config-context"
 import { Trophy, Code, Shield, Database, BookOpen, Share2, Link2 } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -53,7 +54,8 @@ const divisions: Division[] = [
   },
 ]
 
-export function SignalsSection() {
+export function DivisionsSection() {
+  const bootcampConfig = useConfig()
   const scrollRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)

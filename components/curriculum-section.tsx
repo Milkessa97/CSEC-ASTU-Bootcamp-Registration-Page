@@ -4,38 +4,40 @@ import { useState, useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { bootcampConfig } from "@/lib/bootcamp-config"
+import { bootcampConfig as staticConfig } from "@/lib/bootcamp-config"
+import { useConfig } from "@/lib/config-context"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const experiments = [
+const weeks = [
   {
-    title: "Interactive CLI Calculator",
-    medium: "Python",
-    description: "Build a fully functional command-line calculator that processes arithmetic, evaluates inputs dynamically, and handles runtime errors gracefully.",
+    title: "Programming Foundations & Python Basics",
+    tag: "Week 01 · Foundations",
+    description: "L1: Intro to programming, computers & Python setup. L2: Variables, data types & I/O. L3: Operators & calculator problem solving. Plus 2 dedicated mentor practice sessions.",
     span: "col-span-2 row-span-2",
   },
   {
-    title: "Terminal Quiz Game",
-    medium: "Python",
-    description: "Develop a multiple-choice quiz system that reads questions, tracks player scores, and provides feedback.",
+    title: "Decisions & Control Flow",
+    tag: "Week 02 · Control Flow",
+    description: "L1: Booleans, logic & if/elif/else conditions. L2: For & while loops. L3: Nested loops, break/continue & pattern printing exercises.",
     span: "col-span-1 row-span-1",
   },
   {
-    title: "Automated Web Scraper",
-    medium: "Python",
-    description: "Create a script that fetches data from web pages, parses HTML layout elements, and exports structured info.",
+    title: "Functions, Strings & Data Structures",
+    tag: "Week 03 · Core Concepts",
+    description: "L1: Functions, arguments, return values & scope. L2: String methods & debugging. L3: Lists, operations & tuples.",
     span: "col-span-1 row-span-2",
   },
   {
-    title: "Command-Line To-Do App",
-    medium: "Python",
-    description: "Build a custom task organizer that allows users to create, view, complete, and save to-do lists to local files.",
+    title: "Data Structures, Algorithms & Contest",
+    tag: "Week 04 · Advanced & Contest",
+    description: "L1: Sets & Dictionaries. L2: Problem-solving & Search/Sort algorithms. L3: Time complexity, contest prep & closing mini-contest with solutions.",
     span: "col-span-1 row-span-1",
   },
 ]
 
-export function WorkSection() {
+export function CurriculumSection() {
+  const bootcampConfig = useConfig()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
@@ -83,15 +85,15 @@ export function WorkSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="work" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
+    <section ref={sectionRef} id="curriculum" className="relative py-32 pl-6 md:pl-28 pr-6 md:pr-12">
       {/* Section header */}
       <div ref={headerRef} className="mb-16 flex items-end justify-between">
         <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / Projects</span>
-          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">BOOTCAMP PROJECTS</h2>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">02 / Curriculum</span>
+          <h2 className="mt-4 font-[var(--font-bebas)] text-5xl md:text-7xl tracking-tight">BOOTCAMP ROADMAP & LECTURES</h2>
         </div>
         <p className="hidden md:block max-w-xs font-mono text-xs text-muted-foreground text-right leading-relaxed">
-          {bootcampConfig.projectsDescription}
+          {bootcampConfig.projectsDescription || "A structured 4-week learning path taking high school students from syntax basics to algorithmic problem solving."}
         </p>
       </div>
 
@@ -100,8 +102,8 @@ export function WorkSection() {
         ref={gridRef}
         className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px] md:auto-rows-[200px]"
       >
-        {experiments.map((experiment, index) => (
-          <WorkCard key={index} experiment={experiment} index={index} persistHover={index === 0} />
+        {weeks.map((item, index) => (
+          <WorkCard key={index} item={item} index={index} persistHover={index === 0} />
         ))}
       </div>
     </section>
@@ -109,13 +111,13 @@ export function WorkSection() {
 }
 
 function WorkCard({
-  experiment,
+  item,
   index,
   persistHover = false,
 }: {
-  experiment: {
+  item: {
     title: string
-    medium: string
+    tag: string
     description: string
     span: string
   }
@@ -147,7 +149,7 @@ function WorkCard({
       ref={cardRef}
       className={cn(
         "group relative border border-border/40 p-5 flex flex-col justify-between transition-all duration-500 cursor-pointer overflow-hidden",
-        experiment.span,
+        item.span,
         isActive && "border-accent/60",
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -164,7 +166,7 @@ function WorkCard({
       {/* Content */}
       <div className="relative z-10">
         <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          {experiment.medium}
+          {item.tag}
         </span>
         <h3
           className={cn(
@@ -172,7 +174,7 @@ function WorkCard({
             isActive ? "text-accent" : "text-foreground",
           )}
         >
-          {experiment.title}
+          {item.title}
         </h3>
       </div>
 
@@ -180,11 +182,11 @@ function WorkCard({
       <div className="relative z-10">
         <p
           className={cn(
-            "font-mono text-xs text-muted-foreground leading-relaxed transition-all duration-500 max-w-[280px]",
+            "font-mono text-xs text-muted-foreground leading-relaxed transition-all duration-500 max-w-[320px]",
             isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
           )}
         >
-          {experiment.description}
+          {item.description}
         </p>
       </div>
 

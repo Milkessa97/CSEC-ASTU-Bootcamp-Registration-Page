@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils"
 const navItems = [
   { id: "hero", label: "Index" },
   { id: "signals", label: "Divisions" },
-  { id: "work", label: "Projects" },
+  { id: "curriculum", label: "Curriculum" },
   { id: "principles", label: "Motto" },
   { id: "apply", label: "Apply" },
-  { id: "colophon", label: "Credits" },
+  { id: "colophon", label: "Footer" },
 ]
 
 export function SideNav() {

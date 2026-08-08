@@ -7,11 +7,13 @@ import { AnimatedNoise } from "@/components/animated-noise"
 import { BitmapChevron } from "@/components/bitmap-chevron"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { bootcampConfig } from "@/lib/bootcamp-config"
+import { bootcampConfig as staticConfig } from "@/lib/bootcamp-config"
+import { useConfig } from "@/lib/config-context"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function HeroSection() {
+  const bootcampConfig = useConfig()
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 

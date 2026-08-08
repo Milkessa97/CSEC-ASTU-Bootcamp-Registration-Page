@@ -4,11 +4,13 @@ import { useRef, useEffect } from "react"
 import { HighlightText } from "@/components/highlight-text"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { bootcampConfig } from "@/lib/bootcamp-config"
+import { bootcampConfig as staticConfig } from "@/lib/bootcamp-config"
+import { useConfig } from "@/lib/config-context"
 
 gsap.registerPlugin(ScrollTrigger)
 
-export function PrinciplesSection() {
+export function MottoSection() {
+  const bootcampConfig = useConfig()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const principlesRef = useRef<HTMLDivElement>(null)

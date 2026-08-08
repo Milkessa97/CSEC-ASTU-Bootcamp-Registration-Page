@@ -6,7 +6,8 @@ import { Check, ArrowRight, ArrowLeft, Terminal, ShieldAlert } from "lucide-reac
 import { cn } from "@/lib/utils"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { bootcampConfig } from "@/lib/bootcamp-config"
+import { bootcampConfig as staticConfig } from "@/lib/bootcamp-config"
+import { useConfig } from "@/lib/config-context"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -143,6 +144,7 @@ function RadioTile({
 // ----- Main Component -----
 
 export function RegistrationForm() {
+  const bootcampConfig = useConfig()
   const sectionRef = useRef<HTMLElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLDivElement>(null)
@@ -221,7 +223,6 @@ export function RegistrationForm() {
             ...formData,
             bootcampId: "python-fundamentals-2026",
             timestamp: new Date().toISOString(),
-            agreed: true,
           }),
         })
         if (!res.ok) {
