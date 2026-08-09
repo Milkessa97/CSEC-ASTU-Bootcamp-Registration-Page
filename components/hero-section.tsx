@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { ScrambleTextOnHover } from "@/components/scramble-text"
-import { SplitFlapText, SplitFlapMuteToggle, SplitFlapAudioProvider } from "@/components/split-flap-text"
+import { SplitFlapText, SplitFlapAudioProvider } from "@/components/split-flap-text"
 import { AnimatedNoise } from "@/components/animated-noise"
 import { BitmapChevron } from "@/components/bitmap-chevron"
 import gsap from "gsap"
@@ -44,21 +44,11 @@ export function HeroSection() {
     >
       <AnimatedNoise opacity={0.03} />
 
-      {/* Left vertical label — needs the wide desktop gutter to not collide with content */}
-      <div className="hidden md:block absolute left-4 md:left-6 top-1/2 -translate-y-1/2">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/40 -rotate-90 origin-left block whitespace-nowrap">
-          CSEC ASTU / 2026
-        </span>
-      </div>
-
       {/* Main content */}
       <div ref={contentRef} className="flex-1 w-full">
         <SplitFlapAudioProvider>
           <div className="relative">
             <SplitFlapText text="CSEC ASTU" speed={80} />
-            <div className="mt-4">
-              <SplitFlapMuteToggle />
-            </div>
           </div>
         </SplitFlapAudioProvider>
 
@@ -67,23 +57,44 @@ export function HeroSection() {
           {bootcampConfig.title}
         </h2>
 
+        {/* Premium Deadline Badge */}
+        <div className="mt-6 inline-block">
+          <div
+            className="relative inline-flex items-center gap-3.5 px-5 py-2.5 bg-card/80 border border-accent/40 shadow-[0_0_25px_rgba(230,120,30,0.12)] backdrop-blur-md transition-all duration-300"
+            style={{
+              animation: "deadline-breath 3.5s ease-in-out infinite",
+            }}
+          >
+            <div className="absolute -top-px left-3 right-3 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent" />
+            <style>{`
+              @keyframes deadline-breath {
+                0%, 100% { transform: scale(1); opacity: 0.92; }
+                50%       { transform: scale(1.025); opacity: 1; }
+              }
+            `}</style>
+            <p className="font-mono text-xs md:text-sm font-medium tracking-wide text-foreground">
+              {bootcampConfig.hero.deadline}
+            </p>
+          </div>
+        </div>
+
         {/* Tagline — byline, sits close to the title, quieter than everything below it */}
-        <p className="mt-2 font-mono text-[9px] md:text-[10px] text-foreground/40 uppercase tracking-[0.15em] md:tracking-[0.2em] leading-relaxed">
+        <p className="mt-4 font-mono text-[9px] md:text-[10px] text-foreground/40 uppercase tracking-[0.15em] md:tracking-[0.2em] leading-relaxed">
           {bootcampConfig.hero.tagline}
         </p>
 
-        {/* Description — new tier, so a bit more space above it than the byline got */}
+        {/* Description */}
         <div className="mt-5 md:mt-3 max-w-lg space-y-2.5">
           <p className="font-mono text-base md:text-sm text-foreground font-medium leading-relaxed">
             {bootcampConfig.hero.description}
           </p>
-          <p className="font-mono text-[11px] md:text-xs text-foreground/55 leading-relaxed">
+          <p className="font-mono text-xs md:text-sm text-foreground/60 leading-relaxed font-normal">
             {bootcampConfig.hero.subDescription}
           </p>
         </div>
 
         {/* CTAs */}
-        <div className="mt-8 md:mt-6 flex flex-wrap items-end gap-5 md:gap-6">
+        <div className="mt-10 md:mt-8 flex flex-wrap items-center gap-6 md:gap-8">
           <div className="flex flex-col items-center gap-2">
             <span
               aria-hidden="true"
@@ -93,39 +104,43 @@ export function HeroSection() {
                 animation: "nudge-y 1.2s ease-in-out infinite",
               }}
             >
-              <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="14" height="12" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon points="0,0 12,0 6,10" fill="currentColor" />
               </svg>
               <style>{`
                 @keyframes nudge-y {
                   0%, 100% { transform: translateY(0); }
-                  50%       { transform: translateY(5px); }
+                  50%       { transform: translateY(6px); }
                 }
               `}</style>
             </span>
             <a
               href="#apply"
-              className="group inline-flex items-center gap-3 bg-white text-black border border-white px-6 py-3 font-mono text-xs uppercase tracking-widest hover:bg-transparent hover:text-accent hover:border-accent transition-all duration-200"
+              className="relative group inline-flex items-center gap-4 bg-accent text-black font-bold border-2 border-accent px-8 py-3.5 font-mono text-sm md:text-base uppercase tracking-widest shadow-[0_0_15px_rgba(230,120,30,0.20)] hover:shadow-[0_0_22px_rgba(230,120,30,0.30)] hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 overflow-hidden"
             >
+              {/* Subtle ambient light pulse overlay */}
+              <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <ScrambleTextOnHover text="Apply Now" as="span" duration={0.6} />
-              <BitmapChevron className="transition-transform duration-[400ms] ease-in-out group-hover:rotate-45" />
+              <BitmapChevron className="transition-transform duration-[400ms] ease-in-out group-hover:rotate-45 w-4 h-4" />
             </a>
           </div>
           <a
             href="#signals"
-            className="font-mono text-xs uppercase tracking-widest text-foreground/60 hover:text-foreground border-b border-foreground/20 hover:border-foreground/60 pb-0.5 transition-all duration-200"
+            className="font-mono text-xs uppercase tracking-widest text-foreground/50 hover:text-foreground border-b border-foreground/20 hover:border-foreground/60 pb-0.5 transition-all duration-200"
           >
             Meet Our Divisions ↓
           </a>
         </div>
 
-        {/* Stat pills */}
-        <div className="mt-12 md:mt-10 grid grid-cols-2 gap-x-6 gap-y-6 md:flex md:flex-wrap md:gap-y-4">
+        {/* Stat pills — all 6 key facts */}
+        <div className="mt-12 md:mt-10 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6 md:flex md:flex-wrap md:gap-x-8 md:gap-y-4">
           {[
             { label: "Duration", value: bootcampConfig.hero.duration },
             { label: "Level",    value: bootcampConfig.hero.level },
             { label: "Language", value: bootcampConfig.hero.language },
             { label: "Target",   value: bootcampConfig.hero.target },
+            { label: "Mode",     value: bootcampConfig.hero.mode },
+            { label: "Cost",     value: bootcampConfig.hero.cost },
           ].map(({ label, value }) => (
             <div key={label} className="border-l-2 border-accent/50 pl-3">
               <p className="font-mono text-[9px] uppercase tracking-widest text-foreground/40">{label}</p>

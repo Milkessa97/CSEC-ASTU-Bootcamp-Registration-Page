@@ -38,13 +38,15 @@ export async function appendSubmissionToSheet(submission: BootcampSubmission) {
     submission.hasInternet,
     submission.telegram,
     submission.phone,
+    submission.guardianPhone,
     submission.email || "N/A",
+    submission.inspiration,
   ]
 
   try {
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: "A:N", // Appends to the first (default) tab, columns A to N
+      range: "A:P", // Appends to columns A to P
       valueInputOption: "RAW",
       insertDataOption: "INSERT_ROWS",
       requestBody: {
@@ -105,10 +107,13 @@ export async function readBootcampConfig(): Promise<BootcampDetails> {
         tagline:            raw["hero.tagline"]         || undefined,
         description:        raw["hero.description"]     || undefined,
         subDescription:     raw["hero.subDescription"]  || undefined,
+        deadline:           raw["hero.deadline"]        || undefined,
         duration:           raw["hero.duration"]        || undefined,
         level:              raw["hero.level"]           || undefined,
         language:           raw["hero.language"]        || undefined,
         target:             raw["hero.target"]          || undefined,
+        mode:               raw["hero.mode"]            || undefined,
+        cost:               raw["hero.cost"]            || undefined,
       },
       divisionsDescription: raw["divisionsDescription"] || undefined,
       projectsDescription:  raw["projectsDescription"]  || undefined,

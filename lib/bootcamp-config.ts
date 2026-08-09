@@ -14,10 +14,13 @@ export const bootcampConfig: BootcampDetails = {
     description: "Your first step into the world of programming — no experience needed.",
     subDescription:
       "CSEC ASTU's Capacity Building Division is running a hands-on Python bootcamp designed specifically for high school students. Learn to think like a developer, build real projects, and discover what you can create with code.",
+    deadline: "Registration closes Friday, August 14, 11:59 PM.",
     duration: "4 Weeks",
     level: "Beginner",
     language: "Python 3",
     target: "High School",
+    mode: "Online",
+    cost: "Free",
   },
 
   divisionsDescription: "CSEC ASTU DIVISIONS",

@@ -18,7 +18,9 @@ export const BootcampSubmissionSchema = z.object({
   hasInternet: z.enum(["yes", "no"]),
   telegram: z.string().min(1, "Telegram username is required").regex(/^@/, "Must start with @"),
   phone: z.string().min(9, "Phone number is required").regex(/^\+?[0-9\s-]{9,15}$/, "Invalid format"),
-  email: z.string().email("Invalid email format").optional().or(z.literal("")),
+  guardianPhone: z.string().min(9, "Guardian's phone number is required").regex(/^\+?[0-9\s-]{9,15}$/, "Invalid format"),
+  email: z.string().min(1, "Email address is required").email("Invalid email format"),
+  inspiration: z.string().min(1, "Please share what inspires you").max(500, "Must be 500 characters or fewer"),
   agreed: z.literal(true, {
     errorMap: () => ({ message: "You must accept the commitment agreement" }),
   }),
@@ -41,10 +43,13 @@ export const BootcampDetailsSchema = z.object({
     tagline: z.string().default("Computer Science & Engineering Club · Adama Science & Technology University"),
     description: z.string().default("Your first step into the world of programming — no experience needed."),
     subDescription: z.string().default("CSEC ASTU's Capacity Building Division is running a hands-on Python bootcamp designed specifically for high school students. Learn to think like a developer, build real projects, and discover what you can create with code."),
+    deadline: z.string().default("Registration closes Friday, August 14, 11:59 PM."),
     duration: z.string().default("4 Weeks"),
     level: z.string().default("Beginner"),
     language: z.string().default("Python 3"),
     target: z.string().default("High School"),
+    mode: z.string().default("Online"),
+    cost: z.string().default("Free"),
   }),
 
   // Section descriptions
