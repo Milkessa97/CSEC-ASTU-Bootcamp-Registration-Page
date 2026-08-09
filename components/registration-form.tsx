@@ -385,7 +385,7 @@ export function RegistrationForm() {
                           )}
                         >
                           <option value="" className="bg-background text-muted-foreground">— Select Grade —</option>
-                          {["Grade 9", "Grade 10", "Grade 11", "Grade 12"].map((gr) => (
+                          {["Grade 9", "Grade 10", "Grade 11", "Grade 12", "Other"].map((gr) => (
                             <option key={gr} value={gr} className="bg-background">{gr}</option>
                           ))}
                         </select>

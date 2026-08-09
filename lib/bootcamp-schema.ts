@@ -13,7 +13,7 @@ export const BootcampSubmissionSchema = z.object({
   city: z.string().min(1, "City is required"),
   school: z.string().min(1, "School name is required"),
   gender: z.enum(["Male", "Female"]),
-  grade: z.enum(["Grade 9", "Grade 10", "Grade 11", "Grade 12"]),
+  grade: z.enum(["Grade 9", "Grade 10", "Grade 11", "Grade 12", "Other"]),
   hasPC: z.enum(["yes", "no"]),
   hasInternet: z.enum(["yes", "no"]),
   telegram: z.string().min(1, "Telegram username is required").regex(/^@/, "Must start with @"),
