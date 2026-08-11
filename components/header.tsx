@@ -50,7 +50,7 @@ export function Header() {
           onClick={handleApplyClick}
           className="group inline-flex items-center gap-3 bg-white text-black border border-white px-4 py-2 font-mono text-xs uppercase tracking-widest hover:bg-accent/5 hover:text-accent hover:border-accent transition-all duration-200 cursor-pointer"
         >
-          <ScrambleTextOnHover text="Apply Now" as="span" duration={0.6} />
+          <ScrambleTextOnHover text="Closed" as="span" duration={0.6} />
         </button>
       </div>
     </header>

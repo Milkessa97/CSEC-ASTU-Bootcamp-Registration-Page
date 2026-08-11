@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { DivisionsSection } from "@/components/divisions-section"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { MottoSection } from "@/components/motto-section"
-import { RegistrationForm } from "@/components/registration-form"
+import { RegistrationClosed } from "@/components/registration-closed"
 import { Footer } from "@/components/footer"
 import { SideNav } from "@/components/side-nav"
 import { ConfigProvider } from "@/lib/config-context"
@@ -32,7 +32,7 @@ export default async function Page() {
           <DivisionsSection />
           <CurriculumSection />
           <MottoSection />
-          <RegistrationForm />
+          <RegistrationClosed />
           <Footer />
         </div>
       </main>

@@ -120,7 +120,7 @@ export function HeroSection() {
             >
               {/* Subtle ambient light pulse overlay */}
               <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <ScrambleTextOnHover text="Apply Now" as="span" duration={0.6} />
+              <ScrambleTextOnHover text="CSEC ASTU" as="span" duration={0.6} />
               <BitmapChevron className="transition-transform duration-[400ms] ease-in-out group-hover:rotate-45 w-4 h-4" />
             </a>
           </div>
